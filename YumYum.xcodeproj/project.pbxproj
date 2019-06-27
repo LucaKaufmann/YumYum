@@ -15,6 +15,11 @@
 		8102C4A722C4D8110043EE66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8102C4A522C4D8110043EE66 /* LaunchScreen.storyboard */; };
 		8102C4B222C4D8110043EE66 /* YumYumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8102C4B122C4D8110043EE66 /* YumYumTests.swift */; };
 		8102C4BD22C4D8110043EE66 /* YumYumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8102C4BC22C4D8110043EE66 /* YumYumUITests.swift */; };
+		8102C4CC22C4DAEF0043EE66 /* DetailMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8102C4CB22C4DAEF0043EE66 /* DetailMealView.swift */; };
+		8102C4CF22C4E29C0043EE66 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8102C4CE22C4E29C0043EE66 /* Meal.swift */; };
+		8102C4D122C4E4A90043EE66 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8102C4D022C4E4A80043EE66 /* Ingredient.swift */; };
+		8102C4D422C535DB0043EE66 /* UserDefaultValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8102C4D322C535DB0043EE66 /* UserDefaultValue.swift */; };
+		8102C4D722C5361A0043EE66 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8102C4D622C5361A0043EE66 /* UserData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,11 @@
 		8102C4B822C4D8110043EE66 /* YumYumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YumYumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8102C4BC22C4D8110043EE66 /* YumYumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumYumUITests.swift; sourceTree = "<group>"; };
 		8102C4BE22C4D8110043EE66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8102C4CB22C4DAEF0043EE66 /* DetailMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMealView.swift; sourceTree = "<group>"; };
+		8102C4CE22C4E29C0043EE66 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		8102C4D022C4E4A80043EE66 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		8102C4D322C535DB0043EE66 /* UserDefaultValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultValue.swift; sourceTree = "<group>"; };
+		8102C4D622C5361A0043EE66 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +109,12 @@
 		8102C49922C4D80E0043EE66 /* YumYum */ = {
 			isa = PBXGroup;
 			children = (
+				8102C4D522C5360B0043EE66 /* UserData */,
+				8102C4D222C535CA0043EE66 /* Util */,
+				8102C4CD22C4DF540043EE66 /* Models */,
+				8102C4CA22C4DAD70043EE66 /* Views */,
 				8102C49A22C4D80E0043EE66 /* AppDelegate.swift */,
 				8102C49C22C4D80E0043EE66 /* SceneDelegate.swift */,
-				8102C49E22C4D80E0043EE66 /* ContentView.swift */,
 				8102C4A022C4D8110043EE66 /* Assets.xcassets */,
 				8102C4A522C4D8110043EE66 /* LaunchScreen.storyboard */,
 				8102C4A822C4D8110043EE66 /* Info.plist */,
@@ -134,6 +147,40 @@
 				8102C4BE22C4D8110043EE66 /* Info.plist */,
 			);
 			path = YumYumUITests;
+			sourceTree = "<group>";
+		};
+		8102C4CA22C4DAD70043EE66 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8102C49E22C4D80E0043EE66 /* ContentView.swift */,
+				8102C4CB22C4DAEF0043EE66 /* DetailMealView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8102C4CD22C4DF540043EE66 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8102C4CE22C4E29C0043EE66 /* Meal.swift */,
+				8102C4D022C4E4A80043EE66 /* Ingredient.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8102C4D222C535CA0043EE66 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				8102C4D322C535DB0043EE66 /* UserDefaultValue.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		8102C4D522C5360B0043EE66 /* UserData */ = {
+			isa = PBXGroup;
+			children = (
+				8102C4D622C5361A0043EE66 /* UserData.swift */,
+			);
+			path = UserData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,9 +314,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8102C4D422C535DB0043EE66 /* UserDefaultValue.swift in Sources */,
+				8102C4CF22C4E29C0043EE66 /* Meal.swift in Sources */,
+				8102C4D722C5361A0043EE66 /* UserData.swift in Sources */,
 				8102C49B22C4D80E0043EE66 /* AppDelegate.swift in Sources */,
+				8102C4D122C4E4A90043EE66 /* Ingredient.swift in Sources */,
 				8102C49D22C4D80E0043EE66 /* SceneDelegate.swift in Sources */,
 				8102C49F22C4D80E0043EE66 /* ContentView.swift in Sources */,
+				8102C4CC22C4DAEF0043EE66 /* DetailMealView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
