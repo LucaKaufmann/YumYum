@@ -11,15 +11,34 @@ import SwiftUI
 struct ContentView : View {
     
     @EnvironmentObject var userData: UserData
+    @State var draftName: String = ""
+    @State var isEditing: Bool = false
     
     var body: some View {
-        List(self.userData.meals) { meal in
+        List {
+            TextField($draftName, placeholder: Text("Create a New Task..."), onCommit: {
+                print("Test")
+            })
+            ForEach(self.userData.meals) { meal in
                 NavigationButton(destination: DetailMealView(selectedMeal: meal)) {
                     MealRow(name: meal.name)
                 }
             }
-            .navigationBarTitle(Text("Meals"))
-        
+        }
+        .navigationBarTitle(Text("Meals"))
+        .navigationBarItems(trailing: Button(action: { self.isEditing.toggle() }) {
+            if !self.isEditing {
+                Text("Edit")
+            } else {
+                Text("Done").bold()
+            }
+        })
+    }
+    
+    private func createMeal() {
+        let newMeal = Meal(name: self.draftName, ingredients: nil)
+        self.userData.meals.insert(newMeal, at: 0)
+        self.draftName = ""
     }
 }
 

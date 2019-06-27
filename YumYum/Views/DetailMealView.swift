@@ -12,13 +12,21 @@ struct DetailMealView : View {
     
     var selectedMeal: Meal
     
+    @State var draftName: String = ""
+    
     var body: some View {
         VStack {
             Text(selectedMeal.name+" ingredients").font(.title)
-            
-            List(selectedMeal.ingredients ?? [Ingredient]()) { ingredient in
-                IngredientRow(name: ingredient.name, amount: ingredient.amount)
+            List {
+                TextField($draftName, placeholder: Text("Create a New ingredient..."), onCommit: {
+                    print("Test")
+                })
+                ForEach(selectedMeal.ingredients ?? [Ingredient]()) { ingredient in
+                    IngredientRow(name: ingredient.name, amount: ingredient.amount)
+                }
             }
+
+
         }
     }
 }
