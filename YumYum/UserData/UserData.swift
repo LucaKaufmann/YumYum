@@ -10,8 +10,8 @@ import Combine
 import SwiftUI
 
 private let defaultMeals: [Meal] = [
-    Meal(name: "Pizza", ingredients: [Ingredient(name: "Cheese", amount: 1), Ingredient(name: "Tomato Sauce", amount: 1)]),
-    Meal(name: "Spaghetti", ingredients: [Ingredient(name: "Spaghetti", amount: 1), Ingredient(name: "Tomato Sauce", amount: 1)]),
+    Meal(id: UUID(uuidString: "f1e1696f-788c-482d-acd8-d9c05a7372a4")!, name: "Pizza", ingredients: [Ingredient(name: "Cheese", amount: 1), Ingredient(name: "Tomato Sauce", amount: 1)]),
+    Meal(id: UUID(uuidString: "17fb10c6-009c-4286-9a8e-bdeb04000c55")!, name: "Spaghetti", ingredients: [Ingredient(name: "Spaghetti", amount: 1), Ingredient(name: "Tomato Sauce", amount: 1)]),
 ]
 
 final class UserData: BindableObject {
@@ -29,6 +29,12 @@ final class UserData: BindableObject {
             return meal
         } else {
             return Meal(name: "Placeholder", ingredients: nil)
+        }
+    }
+    
+    func update(meal: Meal) {
+        if let row = self.meals.firstIndex(where: {$0.id == meal.id}) {
+            self.meals[row] = meal
         }
     }
 }

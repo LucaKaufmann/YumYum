@@ -19,4 +19,10 @@ struct Meal: Equatable, Hashable, Codable, Identifiable {
         self.name = name
         self.ingredients = ingredients
     }
+    
+    init(id: UUID, name: String, ingredients: [Ingredient]?) {
+        self.id = id
+        self.name = name
+        self.ingredients = ingredients
+    }
 }

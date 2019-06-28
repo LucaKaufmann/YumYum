@@ -43,6 +43,14 @@ struct DetailMealView : View {
 
         }
     }
+    
+    private func addIngredient() {
+        let newIngredient = Ingredient(name: self.draftName, amount: 1)
+        var meal = userData.mealForId(mealId: mealId)
+        meal.ingredients?.append(newIngredient)
+        self.draftName = ""
+        self.userData.update(meal: meal)
+    }
 }
 
 struct IngredientRow: View {
@@ -61,7 +69,7 @@ struct IngredientRow: View {
 #if DEBUG
 struct MealView_Previews : PreviewProvider {
     static var previews: some View {
-        DetailMealView(mealId: 1).environmentObject(UserData())
+        DetailMealView(mealId: UUID(uuidString: "f1e1696f-788c-482d-acd8-d9c05a7372a4")!).environmentObject(UserData())
     }
 }
 #endif

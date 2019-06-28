@@ -18,4 +18,10 @@ struct Ingredient: Equatable, Hashable, Codable, Identifiable {
         self.name = name
         self.amount = amount
     }
+    
+    init(id: UUID, name: String, amount: Int) {
+        self.id = id
+        self.name = name
+        self.amount = amount
+    }
 }
