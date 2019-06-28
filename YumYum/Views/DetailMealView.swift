@@ -10,17 +10,31 @@ import SwiftUI
 
 struct DetailMealView : View {
     
-    var selectedMeal: Meal
-    
+    @EnvironmentObject var userData: UserData
+    var mealId: UUID
+    var selectedMeal: Meal {
+        userData.mealForId(mealId: mealId)
+    }
     @State var draftName: String = ""
+    @State var isTyping: Bool = false
     
     var body: some View {
         VStack {
             Text(selectedMeal.name+" ingredients").font(.title)
             List {
-                TextField($draftName, placeholder: Text("Create a New ingredient..."), onCommit: {
-                    print("Test")
-                })
+                HStack {
+                    TextField($draftName, placeholder: Text("Add ingredient..."), onEditingChanged: { editing in
+                        self.isTyping = editing
+                    },
+                              onCommit: {
+                                print("add ingredient")
+                    })
+                    if isTyping {
+                        Button(action: { print("add ingredient") }) {
+                            Text("Add")
+                        }
+                    }
+                }
                 ForEach(selectedMeal.ingredients ?? [Ingredient]()) { ingredient in
                     IngredientRow(name: ingredient.name, amount: ingredient.amount)
                 }
@@ -47,7 +61,7 @@ struct IngredientRow: View {
 #if DEBUG
 struct MealView_Previews : PreviewProvider {
     static var previews: some View {
-        DetailMealView(selectedMeal: Meal(name: "Pizza", ingredients: [Ingredient(name: "Cheese", amount: 1), Ingredient(name: "Tomato sauce", amount: 1)]))
+        DetailMealView(mealId: 1).environmentObject(UserData())
     }
 }
 #endif

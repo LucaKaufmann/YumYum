@@ -13,14 +13,26 @@ struct ContentView : View {
     @EnvironmentObject var userData: UserData
     @State var draftName: String = ""
     @State var isEditing: Bool = false
+    @State var isTyping: Bool = false
     
     var body: some View {
         List {
-            TextField($draftName, placeholder: Text("Create a New Task..."), onCommit: {
-                print("Test")
-            })
+            HStack {
+                TextField($draftName, placeholder: Text("Add meal..."), onEditingChanged: { editing in
+                    self.isTyping = editing
+                },
+                onCommit: {
+                    self.createMeal()
+                    })
+                if isTyping {
+                    Button(action: { self.createMeal() }) {
+                        Text("Add")
+                    }
+                }
+            }
+            
             ForEach(self.userData.meals) { meal in
-                NavigationButton(destination: DetailMealView(selectedMeal: meal)) {
+                NavigationButton(destination: DetailMealView(mealId: meal.id)) {
                     MealRow(name: meal.name)
                 }
             }
@@ -53,7 +65,9 @@ struct MealRow: View {
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        ContentView()
+        NavigationView {
+            ContentView().environmentObject(UserData())
+        }
     }
 }
 #endif

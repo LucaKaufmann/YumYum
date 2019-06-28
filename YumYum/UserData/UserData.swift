@@ -23,4 +23,12 @@ final class UserData: BindableObject {
             didChange.send(self)
         }
     }
+    
+    func mealForId(mealId: UUID) -> Meal {
+        if let meal = meals.first(where: {$0.id == mealId}) {
+            return meal
+        } else {
+            return Meal(name: "Placeholder", ingredients: nil)
+        }
+    }
 }
