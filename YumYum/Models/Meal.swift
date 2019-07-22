@@ -7,22 +7,40 @@
 //
 
 import SwiftUI
+import RealmSwift
 
-struct Meal: Equatable, Hashable, Codable, Identifiable {
+class Meal: Object {
+    @objc dynamic var id = UUID().uuidString
+    @objc dynamic var name = ""
+    let ingredients = LinkingObjects(fromType: Ingredient.self, property: "meal")
     
-    let id: UUID
-    var name: String
-    var ingredients: [Ingredient]?
-    
-    init(name: String, ingredients: [Ingredient]?) {
-        self.id = UUID()
+    convenience init(_ name: String) {
+        self.init()
         self.name = name
-        self.ingredients = ingredients
     }
     
-    init(id: UUID, name: String, ingredients: [Ingredient]?) {
+    convenience init(id: String, name: String) {
+        self.init()
         self.id = id
         self.name = name
-        self.ingredients = ingredients
     }
 }
+
+//struct Meal: Object, Equatable, Hashable, Codable, Identifiable {
+//
+//    let id: UUID
+//    var name: String
+//    var ingredients: [Ingredient]?
+//
+//    init(name: String, ingredients: [Ingredient]?) {
+//        self.id = UUID()
+//        self.name = name
+//        self.ingredients = ingredients
+//    }
+//
+//    init(id: UUID, name: String, ingredients: [Ingredient]?) {
+//        self.id = id
+//        self.name = name
+//        self.ingredients = ingredients
+//    }
+//}

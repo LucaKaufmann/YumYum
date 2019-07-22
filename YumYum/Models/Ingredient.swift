@@ -7,21 +7,34 @@
 //
 
 import SwiftUI
+import RealmSwift
 
-struct Ingredient: Equatable, Hashable, Codable, Identifiable {
-    let id: UUID
-    var name: String
-    var amount: Int
+@objcMembers class Ingredient: Object {
+    dynamic var id = UUID().uuidString
+    dynamic var name = ""
+    dynamic var amount = 0
     
-    init(name: String, amount: Int) {
-        self.id = UUID()
-        self.name = name
-        self.amount = amount
-    }
-    
-    init(id: UUID, name: String, amount: Int) {
-        self.id = id
+    convenience init(name: String, amount: Int) {
+        self.init()
         self.name = name
         self.amount = amount
     }
 }
+
+//struct Ingredient: Equatable, Hashable, Codable, Identifiable {
+//    let id: UUID
+//    var name: String
+//    var amount: Int
+//
+//    init(name: String, amount: Int) {
+//        self.id = UUID()
+//        self.name = name
+//        self.amount = amount
+//    }
+//
+//    init(id: UUID, name: String, amount: Int) {
+//        self.id = id
+//        self.name = name
+//        self.amount = amount
+//    }
+//}

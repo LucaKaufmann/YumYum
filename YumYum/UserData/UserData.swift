@@ -8,27 +8,35 @@
 
 import Combine
 import SwiftUI
+import RealmSwift
 
 private let defaultMeals: [Meal] = [
-    Meal(id: UUID(uuidString: "f1e1696f-788c-482d-acd8-d9c05a7372a4")!, name: "Pizza", ingredients: [Ingredient(name: "Cheese", amount: 1), Ingredient(name: "Tomato Sauce", amount: 1)]),
-    Meal(id: UUID(uuidString: "17fb10c6-009c-4286-9a8e-bdeb04000c55")!, name: "Spaghetti", ingredients: [Ingredient(name: "Spaghetti", amount: 1), Ingredient(name: "Tomato Sauce", amount: 1)]),
+    Meal(id: "f1e1696f-788c-482d-acd8-d9c05a7372a4", name: "Pizza"),
+    Meal(id: "17fb10c6-009c-4286-9a8e-bdeb04000c55", name: "Spaghetti"),
 ]
 
 final class UserData: BindableObject {
     let didChange = PassthroughSubject<UserData, Never>()
     
-    @UserDefaultValue(key: "Meals", defaultValue: defaultMeals)
-    var meals: [Meal] {
-        didSet {
-            didChange.send(self)
-        }
+    private var notificationTokens: [NotificationToken] = []
+    var meals: RealmSwift.List<Meal>
+    
+    init() {
+        // Observe changes in the underlying model
+        self.notificationTokens.append(meals.observe { _ in
+            self.didChange.send(self)
+        })
+        
+        self.notificationTokens.append(meals.all.observe { _ in
+            self.didChange.send(self)
+        })
     }
     
-    func mealForId(mealId: UUID) -> Meal {
+    func mealForId(mealId: String) -> Meal {
         if let meal = meals.first(where: {$0.id == mealId}) {
             return meal
         } else {
-            return Meal(name: "Placeholder", ingredients: nil)
+            return Meal("Placeholder")
         }
     }
     
