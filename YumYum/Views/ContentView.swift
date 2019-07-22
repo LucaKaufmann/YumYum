@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView : View {
     
-    @EnvironmentObject var userData: UserData
+    @EnvironmentObject var userData: MealObject
     @State var draftName: String = ""
     @State var isEditing: Bool = false
     @State var isTyping: Bool = false
@@ -31,7 +31,7 @@ struct ContentView : View {
                 }
             }
             ForEach(self.userData.meals) { meal in
-                NavigationLink(destination: DetailMealView(meal: meal)) {
+                NavigationLink(destination: DetailMealView(ingredientsObject: IngredientsObject(meal: meal))) {
                     MealRow(name: meal.name)
                 }
             }
@@ -64,7 +64,7 @@ struct MealRow: View {
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ContentView().environmentObject(UserData())
+            ContentView().environmentObject(MealObject())
         }
     }
 }

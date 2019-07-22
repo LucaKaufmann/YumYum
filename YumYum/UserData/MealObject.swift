@@ -15,8 +15,8 @@ private let defaultMeals: [Meal] = [
     Meal(id: "17fb10c6-009c-4286-9a8e-bdeb04000c55", name: "Spaghetti"),
 ]
 
-final class UserData: BindableObject {
-    let willChange = PassthroughSubject<UserData, Never>()
+final class MealObject: BindableObject {
+    let willChange = PassthroughSubject<MealObject, Never>()
     
     private var token: NotificationToken!
     var meals: Results<Meal>

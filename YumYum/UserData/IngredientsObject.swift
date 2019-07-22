@@ -15,8 +15,10 @@ final class IngredientsObject: BindableObject {
     
     private var token: NotificationToken!
     var ingredients: LinkingObjects<Ingredient>
+    var meal: Meal
     
     init(meal: Meal) {
+        self.meal = meal
         self.ingredients = meal.ingredients
         lateInit()
     }

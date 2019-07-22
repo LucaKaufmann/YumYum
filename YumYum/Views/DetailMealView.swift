@@ -10,10 +10,12 @@ import SwiftUI
 
 struct DetailMealView : View {
     
-    @State var ingredientsObject: IngredientsObject
-    var meal: Meal
+    @ObjectBinding var ingredientsObject: IngredientsObject
     @State var draftName: String = ""
     @State var isTyping: Bool = false
+    var meal: Meal {
+        ingredientsObject.meal
+    }
     
     var body: some View {
         VStack {
@@ -24,7 +26,7 @@ struct DetailMealView : View {
                         self.isTyping = editing
                     },
                               onCommit: {
-                                print("committed")
+                                self.addIngredient()
                     })
                     if isTyping {
                         Button(action: { self.addIngredient() }) {
@@ -32,7 +34,7 @@ struct DetailMealView : View {
                         }
                     }
                 }
-                ForEach(meal.ingredients) { ingredient in
+                ForEach(ingredientsObject.ingredients) { ingredient in
                     IngredientRow(name: ingredient.name, amount: ingredient.amount)
                 }
             }
@@ -63,7 +65,7 @@ struct IngredientRow: View {
 #if DEBUG
 struct MealView_Previews : PreviewProvider {
     static var previews: some View {
-        DetailMealView(mealId: "f1e1696f-788c-482d-acd8-d9c05a7372a4").environmentObject(IngredientsObject())
+        DetailMealView(ingredientsObject: IngredientsObject(meal: Meal("Test")))
     }
 }
 #endif
