@@ -30,9 +30,8 @@ struct ContentView : View {
                     }
                 }
             }
-            
             ForEach(self.userData.meals) { meal in
-                NavigationButton(destination: DetailMealView(mealId: meal.id)) {
+                NavigationLink(destination: DetailMealView(meal: meal)) {
                     MealRow(name: meal.name)
                 }
             }
@@ -48,8 +47,7 @@ struct ContentView : View {
     }
     
     private func createMeal() {
-        let newMeal = Meal(name: self.draftName, ingredients: nil)
-        self.userData.meals.insert(newMeal, at: 0)
+        Meal.add(name: self.draftName)
         self.draftName = ""
     }
 }

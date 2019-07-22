@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0D215611FA3FECAFE3D05F7E /* Pods_YumYumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2A1846397C799A0A93C3DE2 /* Pods_YumYumTests.framework */; };
+		4047485122E5E3CA0056B1F1 /* IngredientsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4047485022E5E3CA0056B1F1 /* IngredientsObject.swift */; };
 		8102C49B22C4D80E0043EE66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8102C49A22C4D80E0043EE66 /* AppDelegate.swift */; };
 		8102C49D22C4D80E0043EE66 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8102C49C22C4D80E0043EE66 /* SceneDelegate.swift */; };
 		8102C49F22C4D80E0043EE66 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8102C49E22C4D80E0043EE66 /* ContentView.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		10A252C9C8FC24FDEDEA4FAD /* Pods_YumYum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YumYum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		12ADC4EE96C5696856ED2221 /* Pods-YumYumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YumYumUITests.debug.xcconfig"; path = "Target Support Files/Pods-YumYumUITests/Pods-YumYumUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4047485022E5E3CA0056B1F1 /* IngredientsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsObject.swift; sourceTree = "<group>"; };
 		5F34AAD56C33E131E83B9524 /* Pods-YumYumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YumYumTests.debug.xcconfig"; path = "Target Support Files/Pods-YumYumTests/Pods-YumYumTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6C38D483CD95FCEBDC1F27A5 /* Pods-YumYum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YumYum.release.xcconfig"; path = "Target Support Files/Pods-YumYum/Pods-YumYum.release.xcconfig"; sourceTree = "<group>"; };
 		8102C49722C4D80E0043EE66 /* YumYum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YumYum.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				8102C4D622C5361A0043EE66 /* UserData.swift */,
+				4047485022E5E3CA0056B1F1 /* IngredientsObject.swift */,
 			);
 			path = UserData;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				8102C4CF22C4E29C0043EE66 /* Meal.swift in Sources */,
 				8102C4D722C5361A0043EE66 /* UserData.swift in Sources */,
 				8102C49B22C4D80E0043EE66 /* AppDelegate.swift in Sources */,
+				4047485122E5E3CA0056B1F1 /* IngredientsObject.swift in Sources */,
 				8102C4D122C4E4A90043EE66 /* Ingredient.swift in Sources */,
 				8102C49D22C4D80E0043EE66 /* SceneDelegate.swift in Sources */,
 				8102C49F22C4D80E0043EE66 /* ContentView.swift in Sources */,

@@ -9,9 +9,13 @@
 import SwiftUI
 import RealmSwift
 
-class Meal: Object {
+class Meal: Object, Identifiable {
+    enum Property: String {
+      case id, name
+    }
     @objc dynamic var id = UUID().uuidString
     @objc dynamic var name = ""
+
     let ingredients = LinkingObjects(fromType: Ingredient.self, property: "meal")
     
     convenience init(_ name: String) {
@@ -26,21 +30,20 @@ class Meal: Object {
     }
 }
 
-//struct Meal: Object, Equatable, Hashable, Codable, Identifiable {
-//
-//    let id: UUID
-//    var name: String
-//    var ingredients: [Ingredient]?
-//
-//    init(name: String, ingredients: [Ingredient]?) {
-//        self.id = UUID()
-//        self.name = name
-//        self.ingredients = ingredients
-//    }
-//
-//    init(id: UUID, name: String, ingredients: [Ingredient]?) {
-//        self.id = id
-//        self.name = name
-//        self.ingredients = ingredients
-//    }
-//}
+extension Meal {
+    static func all(in realm: Realm = try! Realm()) -> Results<Meal> {
+    return realm.objects(Meal.self)
+      .sorted(byKeyPath: Meal.Property.name.rawValue)
+    }
+    
+    @discardableResult
+    static func add(name: String, in realm: Realm = try! Realm())
+      -> Meal {
+        let item = Meal(name)
+        try! realm.write {
+          realm.add(item)
+        }
+        return item
+    }
+}
+

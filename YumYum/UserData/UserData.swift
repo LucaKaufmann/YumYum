@@ -16,20 +16,24 @@ private let defaultMeals: [Meal] = [
 ]
 
 final class UserData: BindableObject {
-    let didChange = PassthroughSubject<UserData, Never>()
+    let willChange = PassthroughSubject<UserData, Never>()
     
-    private var notificationTokens: [NotificationToken] = []
-    var meals: RealmSwift.List<Meal>
+    private var token: NotificationToken!
+    var meals: Results<Meal>
     
     init() {
-        // Observe changes in the underlying model
-        self.notificationTokens.append(meals.observe { _ in
-            self.didChange.send(self)
-        })
-        
-        self.notificationTokens.append(meals.all.observe { _ in
-            self.didChange.send(self)
-        })
+        self.meals = Meal.all()
+        lateInit()
+    }
+
+    func lateInit() {
+        token = meals.observe { _ in
+            self.willChange.send(self)
+        }
+    }
+
+    deinit {
+        token.invalidate()
     }
     
     func mealForId(mealId: String) -> Meal {
@@ -41,8 +45,8 @@ final class UserData: BindableObject {
     }
     
     func update(meal: Meal) {
-        if let row = self.meals.firstIndex(where: {$0.id == meal.id}) {
-            self.meals[row] = meal
-        }
+//        if let row = self.meals.firstIndex(where: {$0.id == meal.id}) {
+//            self.meals[row] = meal
+//        }
     }
 }
