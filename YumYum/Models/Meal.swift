@@ -16,7 +16,7 @@ class Meal: Object, Identifiable {
     @objc dynamic var id = UUID().uuidString
     @objc dynamic var name = ""
 
-    let ingredients = LinkingObjects(fromType: Ingredient.self, property: "meal")
+    let ingredients = RealmSwift.List<Ingredient>()
     
     convenience init(_ name: String) {
         self.init()
@@ -32,6 +32,27 @@ class Meal: Object, Identifiable {
     override class func primaryKey() -> String? {
            return "id"
        }
+    
+    func addIngredient(name: String, amount: Int, in realm: Realm = try! Realm()) {
+        let ingredient = Ingredient.add(name: name, amount: amount, meal: self)
+        try! realm.write {
+            self.ingredients.append(ingredient)
+        }
+    
+//        let item = Meal(name)
+//        try! realm.write {
+//          realm.add(item)
+//        }
+    }
+    
+    func deleteIngredient(ingredient: Ingredient, in realm: Realm = try! Realm()) {
+        Ingredient.delete(ingredient: ingredient)
+        try! realm.write {
+            if let index = self.ingredients.index(of: ingredient) {
+                self.ingredients.remove(at: index)
+            }
+        }
+    }
 }
 
 extension Meal {

@@ -43,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func initializeRealm() {
         var config = Realm.Configuration.defaultConfiguration
         config.schemaVersion = 1
+        config.deleteRealmIfMigrationNeeded = true
         config.migrationBlock = { migration, oldVersion in
         // do nothing
         }

@@ -14,18 +14,18 @@ final class IngredientsObject: BindableObject {
     let willChange = PassthroughSubject<IngredientsObject, Never>()
     
     private var token: NotificationToken!
-    var ingredients: LinkingObjects<Ingredient>
+//    var ingredients: LinkingObjects<Ingredient>
     var meal: Meal
     
     init(meal: Meal) {
         self.meal = meal
-        self.ingredients = meal.ingredients
+//        self.ingredients = meal.ingredients
         lateInit()
     }
 
     func lateInit() {
-        token = ingredients.observe { changes in
-            print("Current ingredients: \(self.ingredients)")
+        token = meal.observe { changes in
+//            print("Current ingredients: \(self.ingredients)")
             self.willChange.send(self)
         }
     }
