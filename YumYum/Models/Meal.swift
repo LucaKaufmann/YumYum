@@ -28,6 +28,10 @@ class Meal: Object, Identifiable {
         self.id = id
         self.name = name
     }
+    
+    override class func primaryKey() -> String? {
+           return "id"
+       }
 }
 
 extension Meal {
@@ -44,6 +48,12 @@ extension Meal {
           realm.add(item)
         }
         return item
+    }
+    
+    static func delete(meal: Meal, in realm: Realm = try! Realm()) {
+        try! realm.write {
+          realm.delete(meal)
+        }
     }
 }
 

@@ -41,13 +41,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func initializeRealm() {
-      let realm = try! Realm()
-      guard realm.isEmpty else { return }
+        var config = Realm.Configuration.defaultConfiguration
+        config.schemaVersion = 1
+        config.migrationBlock = { migration, oldVersion in
+        // do nothing
+        }
+        Realm.Configuration.defaultConfiguration = config
+        
+        let realm = try! Realm()
+        guard realm.isEmpty else { return }
 
-      try! realm.write {
-        realm.add(Meal("Spaghetti"))
-        realm.add(Meal("Pizza"))
-      }
+        try! realm.write {
+            realm.add(Meal("Spaghetti"))
+            realm.add(Meal("Pizza"))
+        }
     }
 
 

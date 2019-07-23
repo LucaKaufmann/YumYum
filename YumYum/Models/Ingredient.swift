@@ -24,6 +24,10 @@ import RealmSwift
         self.amount = amount
         self.meal = meal
     }
+    
+    override class func primaryKey() -> String? {
+           return "id"
+       }
 }
 
 extension Ingredient {
@@ -40,5 +44,20 @@ extension Ingredient {
           realm.add(item)
         }
         return item
+    }
+    
+    static func delete(ingredient: Ingredient, in realm: Realm = try! Realm()) {
+        try! realm.write {
+          realm.delete(ingredient)
+        }
+    }
+    
+    static func delete(ingredientId: String, in realm: Realm = try! Realm()) {
+        guard let itemToDelete = realm.object(ofType: Ingredient.self, forPrimaryKey: ingredientId) else {
+            return
+        }
+        try! realm.write {
+          realm.delete(itemToDelete)
+        }
     }
 }

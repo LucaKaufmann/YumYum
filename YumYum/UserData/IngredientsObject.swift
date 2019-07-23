@@ -24,7 +24,8 @@ final class IngredientsObject: BindableObject {
     }
 
     func lateInit() {
-        token = ingredients.observe { _ in
+        token = ingredients.observe { changes in
+            print("Changes: \(changes)")
             self.willChange.send(self)
         }
     }
