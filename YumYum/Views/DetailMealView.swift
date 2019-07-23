@@ -54,7 +54,7 @@ struct DetailMealView : View {
             return
         }
         let ingredientToDelete = ingredientsObject.ingredients[index]
-        Ingredient.delete(ingredientId: ingredientToDelete.id)
+        Ingredient.delete(ingredient: ingredientToDelete)
     }
     
     func delete(item: Ingredient) {
@@ -70,7 +70,6 @@ struct IngredientRow: View {
             Text(ingredient.name)
             Spacer()
             Text("\(ingredient.amount)")
-            Spacer()
         }
     }
 }
