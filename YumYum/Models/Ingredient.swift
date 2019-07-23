@@ -60,4 +60,12 @@ extension Ingredient {
           realm.delete(itemToDelete)
         }
     }
+    
+    func hardCascadeDeleteProperties() -> [String] {
+        return [Property.meal.rawValue]
+    }
+    
+    static func objectExists(id: String, in realm: Realm = try! Realm()) -> Bool {
+        return realm.object(ofType: Ingredient.self, forPrimaryKey: id) != nil
+    }
 }

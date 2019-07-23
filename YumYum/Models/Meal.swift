@@ -51,9 +51,17 @@ extension Meal {
     }
     
     static func delete(meal: Meal, in realm: Realm = try! Realm()) {
-        try! realm.write {
-          realm.delete(meal)
+        do {
+            try realm.write {
+              realm.delete(meal)
+            }
+        } catch {
+            print("something went wrong")
         }
+    }
+    
+    static func objectExists(id: String, in realm: Realm = try! Realm()) -> Bool {
+        return realm.object(ofType: Meal.self, forPrimaryKey: id) != nil
     }
 }
 

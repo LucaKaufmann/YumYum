@@ -31,24 +31,30 @@ struct ContentView : View {
                 }
             }
             ForEach(self.userData.meals) { meal in
-                NavigationLink(destination: DetailMealView(ingredientsObject: IngredientsObject(meal: meal))) {
-                    MealRow(name: meal.name)
+                if Meal.objectExists(id: meal.id) {
+                    NavigationLink(destination: DetailMealView(ingredientsObject: IngredientsObject(meal: meal))) {
+                        MealRow(name: meal.name)
+                    }
                 }
-            }
+            }.onDelete(perform: delete)
         }
         .navigationBarTitle(Text("Meals"))
-        .navigationBarItems(trailing: Button(action: { self.isEditing.toggle() }) {
-            if !self.isEditing {
-                Text("Edit")
-            } else {
-                Text("Done").bold()
-            }
-        })
     }
     
     private func createMeal() {
+        guard self.draftName != "" else {
+            return
+        }
         Meal.add(name: self.draftName)
         self.draftName = ""
+    }
+    
+    func delete(at offsets: IndexSet) {
+        guard let index = offsets.first else {
+            return
+        }
+        let mealToDelete = userData.meals[index]
+        Meal.delete(meal: mealToDelete)
     }
 }
 

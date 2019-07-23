@@ -35,9 +35,10 @@ struct DetailMealView : View {
                     }
                 }
                 ForEach(ingredientsObject.ingredients) { ingredient in
-                    IngredientRow(ingredient: ingredient)
-                }
-                .onDelete(perform: delete)
+                    if Ingredient.objectExists(id: ingredient.id) {
+                        IngredientRow(ingredient: ingredient)
+                    }
+                }.onDelete(perform: delete)
             }
 
 
@@ -45,6 +46,9 @@ struct DetailMealView : View {
     }
     
     private func addIngredient() {
+        guard self.draftName != "" else {
+            return
+        }
         Ingredient.add(name: self.draftName, amount: 1, meal: meal)
         self.draftName = ""
     }
@@ -53,12 +57,8 @@ struct DetailMealView : View {
         guard let index = offsets.first else {
             return
         }
-        let ingredientToDelete = ingredientsObject.ingredients[index]
+        let ingredientToDelete = ingredientsObject.meal.ingredients[index]
         Ingredient.delete(ingredient: ingredientToDelete)
-    }
-    
-    func delete(item: Ingredient) {
-        Ingredient.delete(ingredientId: item.id)
     }
 }
 
