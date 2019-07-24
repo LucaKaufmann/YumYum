@@ -10,34 +10,35 @@ import SwiftUI
 
 struct DetailMealView : View {
     
-    @EnvironmentObject var userData: UserData
-    var mealId: UUID
-    var selectedMeal: Meal {
-        userData.mealForId(mealId: mealId)
-    }
+    @ObjectBinding var ingredientsObject: IngredientsObject
     @State var draftName: String = ""
     @State var isTyping: Bool = false
+    var meal: Meal {
+        ingredientsObject.meal
+    }
     
     var body: some View {
         VStack {
-            Text(selectedMeal.name+" ingredients").font(.title)
+            Text(meal.name+" ingredients").font(.title)
             List {
                 HStack {
                     TextField($draftName, placeholder: Text("Add ingredient..."), onEditingChanged: { editing in
                         self.isTyping = editing
                     },
                               onCommit: {
-                                print("add ingredient")
+                                self.addIngredient()
                     })
                     if isTyping {
-                        Button(action: { print("add ingredient") }) {
+                        Button(action: { self.addIngredient() }) {
                             Text("Add")
                         }
                     }
                 }
-                ForEach(selectedMeal.ingredients ?? [Ingredient]()) { ingredient in
-                    IngredientRow(name: ingredient.name, amount: ingredient.amount)
-                }
+                ForEach(ingredientsObject.ingredients) { ingredient in
+                    if Ingredient.objectExists(id: ingredient.id) {
+                        IngredientRow(ingredient: ingredient)
+                    }
+                }.onDelete(perform: delete)
             }
 
 
@@ -45,23 +46,30 @@ struct DetailMealView : View {
     }
     
     private func addIngredient() {
-        let newIngredient = Ingredient(name: self.draftName, amount: 1)
-        var meal = userData.mealForId(mealId: mealId)
-        meal.ingredients?.append(newIngredient)
+        guard self.draftName != "" else {
+            return
+        }
+        Ingredient.add(name: self.draftName, amount: 1, meal: meal)
         self.draftName = ""
-        self.userData.update(meal: meal)
+    }
+    
+    func delete(at offsets: IndexSet) {
+        guard let index = offsets.first else {
+            return
+        }
+        let ingredientToDelete = ingredientsObject.meal.ingredients[index]
+        Ingredient.delete(ingredient: ingredientToDelete)
     }
 }
 
 struct IngredientRow: View {
-    var name: String
-    var amount: Int
+    var ingredient: Ingredient
     
     var body: some View {
         HStack {
-            Text(name)
+            Text(ingredient.name)
             Spacer()
-            Text("\(amount)")
+            Text("\(ingredient.amount)")
         }
     }
 }
@@ -69,7 +77,7 @@ struct IngredientRow: View {
 #if DEBUG
 struct MealView_Previews : PreviewProvider {
     static var previews: some View {
-        DetailMealView(mealId: UUID(uuidString: "f1e1696f-788c-482d-acd8-d9c05a7372a4")!).environmentObject(UserData())
+        DetailMealView(ingredientsObject: IngredientsObject(meal: Meal("Test")))
     }
 }
 #endif

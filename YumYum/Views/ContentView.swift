@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView : View {
     
-    @EnvironmentObject var userData: UserData
+    @EnvironmentObject var userData: MealObject
     @State var draftName: String = ""
     @State var isEditing: Bool = false
     @State var isTyping: Bool = false
@@ -30,27 +30,31 @@ struct ContentView : View {
                     }
                 }
             }
-            
             ForEach(self.userData.meals) { meal in
-                NavigationButton(destination: DetailMealView(mealId: meal.id)) {
-                    MealRow(name: meal.name)
+                if Meal.objectExists(id: meal.id) {
+                    NavigationLink(destination: DetailMealView(ingredientsObject: IngredientsObject(meal: meal))) {
+                        MealRow(name: meal.name)
+                    }
                 }
-            }
+            }.onDelete(perform: delete)
         }
         .navigationBarTitle(Text("Meals"))
-        .navigationBarItems(trailing: Button(action: { self.isEditing.toggle() }) {
-            if !self.isEditing {
-                Text("Edit")
-            } else {
-                Text("Done").bold()
-            }
-        })
     }
     
     private func createMeal() {
-        let newMeal = Meal(name: self.draftName, ingredients: nil)
-        self.userData.meals.insert(newMeal, at: 0)
+        guard self.draftName != "" else {
+            return
+        }
+        Meal.add(name: self.draftName)
         self.draftName = ""
+    }
+    
+    func delete(at offsets: IndexSet) {
+        guard let index = offsets.first else {
+            return
+        }
+        let mealToDelete = userData.meals[index]
+        Meal.delete(meal: mealToDelete)
     }
 }
 
@@ -66,7 +70,7 @@ struct MealRow: View {
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ContentView().environmentObject(UserData())
+            ContentView().environmentObject(MealObject())
         }
     }
 }
