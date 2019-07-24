@@ -15,6 +15,9 @@ class Meal: Object, Identifiable {
     }
     @objc dynamic var id = UUID().uuidString
     @objc dynamic var name = ""
+    var urlSafeString: String {
+        name.stringByAddingPercentEncodingForRFC3986() ?? ""
+    }
 
     let ingredients = LinkingObjects(fromType: Ingredient.self, property: "meal")
     
@@ -53,7 +56,11 @@ extension Meal {
     static func delete(meal: Meal, in realm: Realm = try! Realm()) {
         do {
             try realm.write {
-              realm.delete(meal)
+                realm.delete(meal)
+//                let ingredientsWithNoMeals = Ingredient.ingredientsWithNoMeals()
+//                if ingredientsWithNoMeals.count > 0 {
+//                    realm.delete(ingredientsWithNoMeals)
+//                }
             }
         } catch {
             print("something went wrong")

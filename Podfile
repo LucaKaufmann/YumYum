@@ -7,6 +7,7 @@ target 'YumYum' do
 
   # Pods for YumYum
   pod 'RealmSwift'
+  pod 'Kingfisher'
 
   target 'YumYumTests' do
     inherit! :search_paths

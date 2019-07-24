@@ -16,29 +16,32 @@ struct ContentView : View {
     @State var isTyping: Bool = false
     
     var body: some View {
-        List {
-            HStack {
-                TextField($draftName, placeholder: Text("Add meal..."), onEditingChanged: { editing in
-                    self.isTyping = editing
-                },
-                onCommit: {
-                    self.createMeal()
-                    })
-                if isTyping {
-                    Button(action: { self.createMeal() }) {
-                        Text("Add")
+        VStack {
+            NetworkImage(imageURL: URL(string: "https://source.unsplash.com/random/400x200?food")!, placeholderImage: UIImage(systemName: "bookmark")!).frame(height: 200).offset(y: -150).padding(.bottom, -150)
+            List {
+                HStack {
+                    TextField($draftName, placeholder: Text("Add meal..."), onEditingChanged: { editing in
+                        self.isTyping = editing
+                    },
+                    onCommit: {
+                        self.createMeal()
+                        })
+                    if isTyping {
+                        Button(action: { self.createMeal() }) {
+                            Text("Add")
+                        }
                     }
                 }
+                ForEach(self.userData.meals) { meal in
+                    if Meal.objectExists(id: meal.id) {
+                        NavigationLink(destination: DetailMealView(ingredientsObject: IngredientsObject(meal: meal))) {
+                            MealRow(name: meal.name)
+                        }
+                    }
+                }.onDelete(perform: delete)
             }
-            ForEach(self.userData.meals) { meal in
-                if Meal.objectExists(id: meal.id) {
-                    NavigationLink(destination: DetailMealView(ingredientsObject: IngredientsObject(meal: meal))) {
-                        MealRow(name: meal.name)
-                    }
-                }
-            }.onDelete(perform: delete)
+            .navigationBarTitle(Text("Meals")).shadow(color: .white, radius: 5)
         }
-        .navigationBarTitle(Text("Meals"))
     }
     
     private func createMeal() {

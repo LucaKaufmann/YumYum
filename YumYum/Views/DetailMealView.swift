@@ -19,7 +19,10 @@ struct DetailMealView : View {
     
     var body: some View {
         VStack {
-            Text(meal.name+" ingredients").font(.title)
+            NetworkImage(imageURL: URL(string: "https://source.unsplash.com/random/500x300?\(meal.urlSafeString)")!,
+                         placeholderImage: UIImage(systemName: "bookmark")!).frame(height: 150).offset(y: -94).padding(.bottom, -94).blur(radius: 2)
+            Text(meal.name+" ingredients").font(.title).offset(y: -20).padding(.bottom, -20)
+                .shadow(color: .white, radius: 5)
             List {
                 HStack {
                     TextField($draftName, placeholder: Text("Add ingredient..."), onEditingChanged: { editing in

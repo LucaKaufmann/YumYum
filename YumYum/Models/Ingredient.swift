@@ -68,4 +68,8 @@ extension Ingredient {
     static func objectExists(id: String, in realm: Realm = try! Realm()) -> Bool {
         return realm.object(ofType: Ingredient.self, forPrimaryKey: id) != nil
     }
+    
+    static func ingredientsWithNoMeals(in realm: Realm = try! Realm()) -> Results<Ingredient> {
+        return realm.objects(Ingredient.self).filter("meal = nil")
+    }
 }
