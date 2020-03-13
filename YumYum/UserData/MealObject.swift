@@ -10,7 +10,7 @@ import Combine
 import SwiftUI
 import RealmSwift
 
-final class MealObject: BindableObject {
+final class MealObject: ObservableObject {
     let willChange = PassthroughSubject<MealObject, Never>()
     
     private var token: NotificationToken!
