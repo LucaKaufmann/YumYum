@@ -20,12 +20,13 @@ struct ContentView : View {
             NetworkImage(imageURL: URL(string: "https://source.unsplash.com/random/400x200?food")!, placeholderImage: UIImage(systemName: "bookmark")!).frame(height: 200).offset(y: -150).padding(.bottom, -150)
             List {
                 HStack {
-                    TextField($draftName, placeholder: Text("Add meal..."), onEditingChanged: { editing in
-                        self.isTyping = editing
-                    },
-                    onCommit: {
-                        self.createMeal()
-                        })
+                    TextField("Add meal...", text: $draftName,
+                              onEditingChanged: { editing in
+                                self.isTyping = editing
+                                },
+                              onCommit: {
+                                self.createMeal()
+                                })
                     if isTyping {
                         Button(action: { self.createMeal() }) {
                             Text("Add")

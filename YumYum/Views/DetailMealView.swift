@@ -10,7 +10,7 @@ import SwiftUI
 
 struct DetailMealView : View {
     
-    @ObjectBinding var ingredientsObject: IngredientsObject
+    @ObservedObject var ingredientsObject: IngredientsObject
     @State var draftName: String = ""
     @State var isTyping: Bool = false
     var meal: Meal {
@@ -25,7 +25,7 @@ struct DetailMealView : View {
                 .shadow(color: .white, radius: 5)
             List {
                 HStack {
-                    TextField($draftName, placeholder: Text("Add ingredient..."), onEditingChanged: { editing in
+                    TextField("Add ingredient...", text: $draftName, onEditingChanged: { editing in
                         self.isTyping = editing
                     },
                               onCommit: {
