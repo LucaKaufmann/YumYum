@@ -19,10 +19,7 @@ struct DetailMealView : View {
     
     var body: some View {
         VStack {
-            NetworkImage(imageURL: URL(string: "https://source.unsplash.com/random/500x300?\(meal.urlSafeString)")!,
-                         placeholderImage: UIImage(systemName: "bookmark")!).frame(height: 150).offset(y: -94).padding(.bottom, -94).blur(radius: 2)
-            Text(meal.name+" ingredients").font(.title).offset(y: -20).padding(.bottom, -20)
-                .shadow(color: .white, radius: 5)
+            Rectangle().foregroundColor(.red).frame(height: 200).offset(y: -150).padding(.bottom, -150)
             List {
                 HStack {
                     TextField("Add ingredient...", text: $draftName, onEditingChanged: { editing in
@@ -45,7 +42,7 @@ struct DetailMealView : View {
             }
 
 
-        }
+        }.navigationBarTitle(Text("Ingredients"))
     }
     
     private func addIngredient() {

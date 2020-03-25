@@ -17,7 +17,8 @@ struct ContentView : View {
     
     var body: some View {
         VStack {
-            NetworkImage(imageURL: URL(string: "https://source.unsplash.com/random/400x200?food")!, placeholderImage: UIImage(systemName: "bookmark")!).frame(height: 200).offset(y: -150).padding(.bottom, -150)
+            Rectangle().foregroundColor(.red).frame(height: 200).offset(y: -150).padding(.bottom, -150)
+//            NetworkImage(imageURL: URL(string: "https://source.unsplash.com/random/400x200?food")!, placeholderImage: UIImage(systemName: "bookmark")!).frame(height: 200).offset(y: -150).padding(.bottom, -150)
             List {
                 HStack {
                     TextField("Add meal...", text: $draftName,
@@ -41,7 +42,7 @@ struct ContentView : View {
                     }
                 }.onDelete(perform: delete)
             }
-            .navigationBarTitle(Text("Meals")).shadow(color: .white, radius: 5)
+            .navigationBarTitle(Text("Meals"))
         }
     }
     
