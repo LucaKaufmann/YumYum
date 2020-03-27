@@ -19,7 +19,7 @@ struct DetailMealView : View {
     
     var body: some View {
         VStack {
-            Rectangle().foregroundColor(.red).frame(height: 200).offset(y: -150).padding(.bottom, -150)
+            Rectangle().foregroundColor(Color("Peppermint")).frame(height: 200).offset(y: -150).padding(.bottom, -150)
             List {
                 HStack {
                     TextField("Add ingredient...", text: $draftName, onEditingChanged: { editing in
@@ -42,7 +42,7 @@ struct DetailMealView : View {
             }
 
 
-        }.navigationBarTitle(Text("Ingredients"))
+        }.navigationBarTitle(Text(ingredientsObject.meal.name))
     }
     
     private func addIngredient() {
@@ -59,18 +59,6 @@ struct DetailMealView : View {
         }
         let ingredientToDelete = ingredientsObject.meal.ingredients[index]
         Ingredient.delete(ingredient: ingredientToDelete)
-    }
-}
-
-struct IngredientRow: View {
-    var ingredient: Ingredient
-    
-    var body: some View {
-        HStack {
-            Text(ingredient.name)
-            Spacer()
-            Text("\(ingredient.amount)")
-        }
     }
 }
 

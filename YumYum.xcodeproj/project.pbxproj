@@ -25,6 +25,12 @@
 		8102C4D122C4E4A90043EE66 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8102C4D022C4E4A80043EE66 /* Ingredient.swift */; };
 		8102C4D422C535DB0043EE66 /* UserDefaultValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8102C4D322C535DB0043EE66 /* UserDefaultValue.swift */; };
 		8102C4D722C5361A0043EE66 /* MealObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8102C4D622C5361A0043EE66 /* MealObject.swift */; };
+		814546A2242DFE9700FA7298 /* Color+customColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814546A1242DFE9700FA7298 /* Color+customColors.swift */; };
+		814546A3242DFE9700FA7298 /* Color+customColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814546A1242DFE9700FA7298 /* Color+customColors.swift */; };
+		814546A4242DFE9700FA7298 /* Color+customColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814546A1242DFE9700FA7298 /* Color+customColors.swift */; };
+		814546A6242E318100FA7298 /* IngredientRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814546A5242E318100FA7298 /* IngredientRow.swift */; };
+		814546A7242E318100FA7298 /* IngredientRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814546A5242E318100FA7298 /* IngredientRow.swift */; };
+		814546A8242E318100FA7298 /* IngredientRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814546A5242E318100FA7298 /* IngredientRow.swift */; };
 		C706E726CA2F821450429D38 /* Pods_YumYumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BB481EDAA0639E244E4C7D0 /* Pods_YumYumUITests.framework */; };
 		CBFA191CFC4CC73105589100 /* Pods_YumYum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10A252C9C8FC24FDEDEA4FAD /* Pods_YumYum.framework */; };
 /* End PBXBuildFile section */
@@ -74,6 +80,8 @@
 		8102C4D022C4E4A80043EE66 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		8102C4D322C535DB0043EE66 /* UserDefaultValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultValue.swift; sourceTree = "<group>"; };
 		8102C4D622C5361A0043EE66 /* MealObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealObject.swift; sourceTree = "<group>"; };
+		814546A1242DFE9700FA7298 /* Color+customColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+customColors.swift"; sourceTree = "<group>"; };
+		814546A5242E318100FA7298 /* IngredientRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientRow.swift; sourceTree = "<group>"; };
 		9BB481EDAA0639E244E4C7D0 /* Pods_YumYumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YumYumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC8D48C96D1DE59EFE845505 /* Pods-YumYumUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YumYumUITests.release.xcconfig"; path = "Target Support Files/Pods-YumYumUITests/Pods-YumYumUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E2A1846397C799A0A93C3DE2 /* Pods_YumYumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YumYumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +123,7 @@
 				4047485422E7271F0056B1F1 /* RealmExtensions.swift */,
 				4047485622E858820056B1F1 /* NetworkImage.swift */,
 				4047485822E865AD0056B1F1 /* String+urlEncode.swift */,
+				814546A1242DFE9700FA7298 /* Color+customColors.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -190,6 +199,7 @@
 			children = (
 				8102C49E22C4D80E0043EE66 /* ContentView.swift */,
 				8102C4CB22C4DAEF0043EE66 /* DetailMealView.swift */,
+				814546A5242E318100FA7298 /* IngredientRow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -467,6 +477,7 @@
 				8102C4D422C535DB0043EE66 /* UserDefaultValue.swift in Sources */,
 				4047485222E5F8C70056B1F1 /* IngredientsObject.swift in Sources */,
 				8102C4CF22C4E29C0043EE66 /* Meal.swift in Sources */,
+				814546A6242E318100FA7298 /* IngredientRow.swift in Sources */,
 				4047485522E7271F0056B1F1 /* RealmExtensions.swift in Sources */,
 				8102C4D722C5361A0043EE66 /* MealObject.swift in Sources */,
 				8102C49B22C4D80E0043EE66 /* AppDelegate.swift in Sources */,
@@ -475,6 +486,7 @@
 				4047485922E865AD0056B1F1 /* String+urlEncode.swift in Sources */,
 				8102C49D22C4D80E0043EE66 /* SceneDelegate.swift in Sources */,
 				8102C49F22C4D80E0043EE66 /* ContentView.swift in Sources */,
+				814546A2242DFE9700FA7298 /* Color+customColors.swift in Sources */,
 				8102C4CC22C4DAEF0043EE66 /* DetailMealView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,6 +495,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				814546A3242DFE9700FA7298 /* Color+customColors.swift in Sources */,
+				814546A7242E318100FA7298 /* IngredientRow.swift in Sources */,
 				8102C4B222C4D8110043EE66 /* YumYumTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,6 +505,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				814546A4242DFE9700FA7298 /* Color+customColors.swift in Sources */,
+				814546A8242E318100FA7298 /* IngredientRow.swift in Sources */,
 				8102C4BD22C4D8110043EE66 /* YumYumUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

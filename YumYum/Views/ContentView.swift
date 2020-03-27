@@ -17,7 +17,7 @@ struct ContentView : View {
     
     var body: some View {
         VStack {
-            Rectangle().foregroundColor(.red).frame(height: 200).offset(y: -150).padding(.bottom, -150)
+            Rectangle().foregroundColor(Color("Peppermint")).frame(height: 200).offset(y: -150).padding(.bottom, -150)
 //            NetworkImage(imageURL: URL(string: "https://source.unsplash.com/random/400x200?food")!, placeholderImage: UIImage(systemName: "bookmark")!).frame(height: 200).offset(y: -150).padding(.bottom, -150)
             List {
                 HStack {
@@ -74,9 +74,15 @@ struct MealRow: View {
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            ContentView().environmentObject(MealObject())
-        }
+        Group {
+         NavigationView {
+             ContentView().environmentObject(MealObject())
+         }.environment(\.colorScheme, .light)
+
+         NavigationView {
+             ContentView().environmentObject(MealObject())
+         }.environment(\.colorScheme, .dark)
+      }
     }
 }
 #endif
